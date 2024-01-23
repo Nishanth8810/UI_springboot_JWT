@@ -1,1 +1,24 @@
-<p>admin works!</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">No.</th>
+      <th scope="col">Email</th>
+      <th scope="col">Role</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  *ngFor="let user of users">
+      <th scope="row">{{ user.id}}</th>
+      <td>{{user.email}}</td>
+      <td>{{user.role[0].roleName}}</td>
+      <td>
+        <button (click)="editUser(user.id)" class="btn btn-warning">Edit</button>
+      </td>
+      <td>
+        <button (click)="deleteUser(user.id)" class="btn btn-danger">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

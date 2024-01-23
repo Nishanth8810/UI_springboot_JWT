@@ -10,8 +10,12 @@ import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from './_auth/auth.guard';
+import { AuthInterceptor } from './_auth/auth.interceptor';
+import { UserService } from './_services/user.service';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +25,8 @@ import { RouterModule } from '@angular/router';
     UserComponent,
     AdminComponent,
     HomeComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,13 @@ import { RouterModule } from '@angular/router';
     RouterModule
   ],
   providers: [
-    provideClientHydration()
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass:AuthInterceptor,
+      multi:true
+    },
+    UserService
   ],
   bootstrap: [AppComponent]
 })
