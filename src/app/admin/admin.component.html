@@ -4,7 +4,6 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th scope="col">No.</th>
       <th scope="col">Email</th>
       <th scope="col">Role</th>
       <th scope="col">Edit</th>
@@ -12,8 +11,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr  *ngFor="let user of users">
-      <th scope="row">{{ user.id}}</th>
+    <tr *ngFor="let user of users">
+      <!-- <th scope="row">{{ user.id}}</th> -->
       <td>{{user.email}}</td>
       <td>{{user.role[0].roleName}}</td>
       <td>

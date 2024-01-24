@@ -14,6 +14,20 @@ export class UserService {
   constructor(private httpClient:HttpClient,
     private userAuthService:UserAuthService) { }
 
+    private getHeaders(): HttpHeaders {
+      const token = this.userAuthService.getToken();
+      console.log(token);
+      return new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+    }
+
+    public forUser() {
+      return this.httpClient.get(this.PATH_OF_API + '/getUser', {
+        headers:this.getHeaders()
+      });
+    }
+
   public login(loginData:NgForm){
     return this.httpClient.post(this.PATH_OF_API + '/authenticate', loginData, {
       headers: this.requestHeader,
@@ -26,17 +40,18 @@ export class UserService {
     } );
   }
 
+  uploadFile(file: File): any {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.httpClient.post(`${this.PATH_OF_API}/user/4/upload-profile-picture`, formData
+    );
+  }
 
   getAllUsers() {
-    return this.httpClient.get(this.PATH_OF_API +'/admin/allUsers'
-   );
+    return this.httpClient.get(this.PATH_OF_API +'/admin/allUsers');
   }
 
-  public forUser() {
-    return this.httpClient.get(this.PATH_OF_API + '/forUser', {
-      responseType: 'text',
-    });
-  }
+
 
 
   deleteUser(userId: number): Observable<void> {

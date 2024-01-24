@@ -8,6 +8,7 @@ import { log } from 'console';
   styleUrl: './admin.component.css'
 })
 export class AdminComponent implements OnInit {
+  
   constructor(private userService:UserService){}
 
   users:any = [];
@@ -19,7 +20,6 @@ export class AdminComponent implements OnInit {
 
   loadUsers(): void {
     this.userService.getAllUsers().subscribe((users:any) => {
-      console.log(users)
       this.users = users;
     });
   }

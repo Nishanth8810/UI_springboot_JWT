@@ -20,7 +20,7 @@ export class LoginComponent  {
     this.userService.login(loginFrom.value).subscribe(
       (response:any)=>{
        this.authService.setRoles(response.user.role);
-       this.authService.setToken(response.user.jwtToken);
+       this.authService.setToken(response.jwtToken);
        const role = response.user.role[0].roleName;
         if (role === 'Admin') {
           this.router.navigate(['/admin']);
