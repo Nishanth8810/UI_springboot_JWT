@@ -51,9 +51,6 @@ export class UserService {
     return this.httpClient.get(this.PATH_OF_API +'/admin/allUsers');
   }
 
-
-
-
   deleteUser(userId: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.PATH_OF_API}/admin/delete/${userId}`);
   }

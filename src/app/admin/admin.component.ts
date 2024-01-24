@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
-import { log } from 'console';
 
 @Component({
   selector: 'app-admin',
@@ -25,8 +24,12 @@ export class AdminComponent implements OnInit {
   }
 
   deleteUser(userId:number){
+    const confirmDelete = window.confirm('Are you sure you want to delete this user?');
+
+    if (confirmDelete) {
     this.userService.deleteUser(userId).subscribe((resonse)=>
-    this.loadUsers());
+    this.loadUsers());}
+    
   }
 
   editUser(userId:number){

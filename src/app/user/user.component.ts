@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../_services/user.service';
-import { error } from 'console';
 
 @Component({
   selector: 'app-user',

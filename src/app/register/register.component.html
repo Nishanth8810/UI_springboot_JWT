@@ -1,8 +1,19 @@
-<form (ngSubmit)="registerUser(userForm)" #userForm="ngForm">
-  <label for="username">Email:</label>
-  <input type="text" id="email" name="email" ngModel required>
-  <label for="username">password:</label>
-  <input type="text" id="password" name="password" ngModel required>
-
-  <button value= "submit">Register</button>
-</form>
+<!-- app.component.html -->
+<div class="container mt-5">
+  <div class="card p-4 mx-auto" style="max-width: 400px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h2 class="text-center mb-4">Registration</h2>
+    <form (ngSubmit)="registerUser(userForm)" #userForm="ngForm">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email:</label>
+        <input type="text" id="email" name="email" ngModel required class="form-control">
+      </div>
+     
+      <div class="mb-3">
+        <label for="password" class="form-label">Password:</label>
+        <input type="password" id="password" name="password" ngModel required class="form-control">
+      </div>
+      <small *ngIf="userForm.invalid && userForm.dirty" id="errorMessage" class="form-text text-danger">*Required field</small>
+      <button type="submit" [disabled]="userForm.invalid" class="btn btn-success btn-block mt-3">Register</button>
+    </form>
+  </div>
+</div>
