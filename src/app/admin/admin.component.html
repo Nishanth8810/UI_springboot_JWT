@@ -20,10 +20,10 @@
         <td>{{user.email}}</td>
         <td>{{user.role[0].roleName}}</td>
         <td>
-          <button (click)="editUser(user.id)" class="btn btn-warning btn-sm mr-1">Edit</button>
+          <button class="btn btn-warning btn-sm mr-1"  [routerLink]="['/update', user.id]" >Edit</button>
           </td>
           <td>
-          <button (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">Delete</button>
+          <button *ngIf="user.role[0].roleName!=='Admin'" (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">Delete</button>
         </td>
       </tr>
     </tbody>

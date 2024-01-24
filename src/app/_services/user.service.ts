@@ -33,7 +33,19 @@ export class UserService {
       headers: this.requestHeader,
     });
   }
+  updateUser(userId: number, updatedUserForm: NgForm) {
 
+    const updatedUser = {
+      email: updatedUserForm.value.email,
+    };
+
+
+
+    return this.httpClient.put(`${this.PATH_OF_API}/user/update/${userId}`, updatedUser,{
+      responseType:'text'
+    });
+  }
+  
   registerUser(form: NgForm) {
     return this.httpClient.post(this.PATH_OF_API + '/register', form,{
      responseType:'text'
@@ -55,14 +67,12 @@ export class UserService {
     return this.httpClient.delete<void>(`${this.PATH_OF_API}/admin/delete/${userId}`);
   }
 
-  editUser(userId :number,updatedUser: any){
-    return this.httpClient.patch(`${this.PATH_OF_API}/admin/updateUser/${userId}`,updatedUser);
-  }
+
 
   searchUsers(searchTerm: string): Observable<any> {
     return this.httpClient.get<any>(`${this.PATH_OF_API}/admin/search?term=${searchTerm}`);
   }
-  
+ 
 
   public roleMatch(allowedRoles:any):any{
     let isMatch=false;

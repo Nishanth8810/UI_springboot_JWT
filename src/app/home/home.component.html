@@ -1,5 +1,19 @@
+<!-- home.component.html -->
+
 <div class="container mt-5">
-  <div class="card text-center" style="padding: 20px;">
-   <h1>This is Home Page</h1>
+  <div class="card text-center">
+    <div class="card-body">
+      <h1 class="card-title">Welcome to User Management</h1>
+      <p class="card-text">Manage your users with ease!</p>
+
+      <div class="row mt-4">
+        <div class="col-md-6">
+          <a routerLink="/admin" class="btn btn-primary btn-lg btn-block">Admin Dashboard</a>
+        </div>
+        <div class="col-md-6">
+          <a routerLink="/user-profile" class="btn btn-success btn-lg btn-block">User Profile</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

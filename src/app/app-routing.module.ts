@@ -7,6 +7,7 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { AdminComponent } from './admin/admin.component';
 import { AuthGuard } from './_auth/auth.guard';
 import { RegisterComponent } from './register/register.component';
+import { EditComponent } from './admin/edit-component/edit/edit.component';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'forbidden',component:ForbiddenComponent},
   {path:'register',component:RegisterComponent},
+  { path: 'update/:userId', component: EditComponent },
   {path:'admin',component:AdminComponent,canActivate:[AuthGuard], data:{roles:['Admin']}}
 ];
 

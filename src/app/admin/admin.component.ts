@@ -32,9 +32,7 @@ export class AdminComponent implements OnInit {
     
   }
 
-  editUser(userId:number){
 
-  }
   searchUsers(): void {
     console.log('Search term:', this.searchTerm);
   
