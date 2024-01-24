@@ -1,8 +1,8 @@
-<form (ngSubmit)="registerUser(userForm.value)" #userForm="ngForm">
+<form (ngSubmit)="registerUser(userForm)" #userForm="ngForm">
   <label for="username">Email:</label>
   <input type="text" id="email" name="email" ngModel required>
   <label for="username">password:</label>
   <input type="text" id="password" name="password" ngModel required>
 
-  <button type="submit">Register</button>
+  <button value= "submit">Register</button>
 </form>

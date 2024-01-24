@@ -21,20 +21,34 @@ export class UserService {
   }
 
   registerUser(form: NgForm) {
-    return this.httpClient.post(this.PATH_OF_API + '/register', form);
+    return this.httpClient.post(this.PATH_OF_API + '/register', form,{
+     responseType:'text'
+    } );
   }
 
 
-  getAllUsers():any {
-    return this.httpClient.get<any>(this.PATH_OF_API +'/admin/allUsers');
+  getAllUsers() {
+    return this.httpClient.get(this.PATH_OF_API +'/admin/allUsers'
+   );
   }
+
+  public forUser() {
+    return this.httpClient.get(this.PATH_OF_API + '/forUser', {
+      responseType: 'text',
+    });
+  }
+
 
   deleteUser(userId: number): Observable<void> {
-    return this.httpClient.delete<void>(`${this.PATH_OF_API}/admin/deleteUser/${userId}`);
+    return this.httpClient.delete<void>(`${this.PATH_OF_API}/admin/delete/${userId}`);
   }
 
   editUser(userId :number,updatedUser: any){
     return this.httpClient.patch(`${this.PATH_OF_API}/admin/updateUser/${userId}`,updatedUser);
+  }
+
+  searchUsers(searchTerm: string): Observable<any> {
+    return this.httpClient.get<any>(`${this.PATH_OF_API}/admin/search?term=${searchTerm}`);
   }
   
 

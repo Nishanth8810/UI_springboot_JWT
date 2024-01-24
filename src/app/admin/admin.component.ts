@@ -11,6 +11,7 @@ export class AdminComponent implements OnInit {
   constructor(private userService:UserService){}
 
   users:any = [];
+  searchTerm: string = '';
 
   ngOnInit(): void {
     this.loadUsers();
@@ -18,17 +19,36 @@ export class AdminComponent implements OnInit {
 
   loadUsers(): void {
     this.userService.getAllUsers().subscribe((users:any) => {
-      console.log(users);
+      console.log(users)
       this.users = users;
     });
   }
 
-  deleteUser(userId:BigInteger){
-    
+  deleteUser(userId:number){
+    this.userService.deleteUser(userId).subscribe((resonse)=>
+    this.loadUsers());
   }
 
-  editUser(userId:BigInt){
+  editUser(userId:number){
 
   }
+  searchUsers(): void {
+    console.log('Search term:', this.searchTerm);
+  
+    if (this.searchTerm.trim() === '') {
+      this.loadUsers();
+    } else {
+      this.userService.searchUsers(this.searchTerm).subscribe(
+        (filteredUsers) => {
+          console.log('Filtered users:', filteredUsers);
+          this.users = filteredUsers;
+        },
+        (error) => {
+          console.error('Error searching users:', error);
+        }
+      );
+    }
+  }
+  
 
 }
