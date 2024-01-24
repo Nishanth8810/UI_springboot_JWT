@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class RegisterComponent {
 
+  exits:boolean=false;
 
   constructor(private userService: UserService,private router:Router){
     
@@ -23,6 +24,9 @@ export class RegisterComponent {
             
           },
           error => {
+            if(error){
+                this.exits=true;
+            }
             console.error('Registration failed:', error);
           }
         )

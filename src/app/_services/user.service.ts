@@ -48,7 +48,8 @@ export class UserService {
   
   registerUser(form: NgForm) {
     return this.httpClient.post(this.PATH_OF_API + '/register', form,{
-     responseType:'text'
+     responseType:'text',
+     headers:this.getHeaders()
     } );
   }
 
@@ -60,7 +61,9 @@ export class UserService {
   }
 
   getAllUsers() {
-    return this.httpClient.get(this.PATH_OF_API +'/admin/allUsers');
+    return this.httpClient.get(this.PATH_OF_API +'/admin/allUsers',{
+     
+    });
   }
 
   deleteUser(userId: number): Observable<void> {

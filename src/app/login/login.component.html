@@ -24,6 +24,9 @@
 
       <small *ngIf="loginForm.invalid && loginForm.dirty" id="errorMessage" class="form-text text-danger">*Required field</small>
       <button type="submit" class="btn btn-primary btn-block mt-3" [disabled]="loginForm.invalid">Submit</button>
+      <div *ngIf="loginFailed" class="alert alert-danger mt-3">
+        Invalid username or password.
+      </div>
     </form>
   </div>
 </div>

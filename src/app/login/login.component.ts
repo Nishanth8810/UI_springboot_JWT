@@ -11,7 +11,7 @@ import { UserAuthService } from '../_services/user-auth.service';
   styleUrl: './login.component.css'
 })
 export class LoginComponent  {
-
+  loginFailed: boolean = false;
   constructor(private userService:UserService,
     private authService:UserAuthService,
     private router:Router){}
@@ -19,6 +19,9 @@ export class LoginComponent  {
   login(loginFrom:NgForm){
     this.userService.login(loginFrom.value).subscribe(
       (response:any)=>{
+        if (response.status === 404) {
+          // Handle 404 response - invalid username or password
+          this.loginFailed = true;}
        this.authService.setRoles(response.user.role);
        this.authService.setToken(response.jwtToken);
        const role = response.user.role[0].roleName;
@@ -29,6 +32,9 @@ export class LoginComponent  {
         }
       },
       (error)=>{
+        if (error.status === 404) {
+          // Handle 404 response - invalid username or password
+          this.loginFailed = true;}
         console.log(error);
       }
     )
